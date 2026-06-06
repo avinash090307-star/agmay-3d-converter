@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agmay 3D Converter — Image to 3D Model</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🧊</text></svg>">
+    <meta name="description" content="Convert any image into a high-quality 3D model using state-of-the-art AI. Agmay 3D Converter — the most advanced image-to-3D pipeline.">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <svg class="brand-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                    <rect x="2" y="2" width="32" height="32" rx="8" stroke="url(#gradient)" stroke-width="2.5" fill="none"/>
+                    <path d="M18 8L28 14V26L18 32L8 26V14L18 8Z" stroke="url(#gradient)" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+                    <circle cx="18" cy="20" r="4" stroke="url(#gradient)" stroke-width="1.5" fill="none"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="36" y2="36">
+                            <stop stop-color="#6C63FF"/>
+                            <stop offset="1" stop-color="#FF6584"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="brand-text">
+                    <h1>Agmay</h1>
+                    <span class="brand-sub">3D Converter</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#converter" class="active">Converter</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#models">Models</a>
+                <a href="https://github.com/agmay/3d-converter" target="_blank" class="nav-github">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        v2.0 — State of the Art
+                    </div>
+                    <h1 class="hero-title">
+                        Turn Any Image Into a
+                        <span class="gradient-text">3D Model</span>
+                    </h1>
+                    <p class="hero-description">
+                        Powered by the most advanced AI pipeline — <strong>SF3D</strong> + <strong>Unique3D</strong> + <strong>LGM</strong>.
+                        Upload an image and get a production-ready 3D mesh with PBR textures in seconds.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-value">0.5s</span>
+                            <span class="stat-label">Generation Speed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">65K+</span>
+                            <span class="stat-label">Gaussian Points</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">PBR</span>
+                            <span class="stat-label">Physically Based</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">4K</span>
+                            <span class="stat-label">UV Textures</span>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#converter" class="btn btn-primary btn-large">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            Try It Now
+                        </a>
+                        <a href="#how-it-works" class="btn btn-outline btn-large">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                            Watch Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-3d-container" id="hero-3d">
+                        <!-- Three.js canvas renders here -->
+                    </div>
+                    <div class="hero-floating-cards">
+                        <div class="float-card card-1">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            Multi-View Diffusion
+                        </div>
+                        <div class="float-card card-2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6584" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                            ISOMER Mesh Gen
+                        </div>
+                        <div class="float-card card-3">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                            Gaussian Splatting
+                        </div>
+                        <div class="float-card card-4">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            PBR Texturing
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg-gradient"></div>
+    </section>
+
+    <!-- Converter Section -->
+    <section class="converter" id="converter">
+        <div class="container">
+            <div class="section-header">
+                <h2>Convert Image to <span class="gradient-text">3D Model</span></h2>
+                <p>Upload any image — object, character, product — and get a fully textured 3D mesh in real-time.</p>
+            </div>
+
+            <div class="converter-panel">
+                <div class="converter-tabs">
+                    <button class="tab-btn active" data-mode="image">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        Image to 3D
+                    </button>
+                    <button class="tab-btn" data-mode="advanced">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                        Advanced Settings
+                    </button>
+                </div>
+
+                <div class="converter-body">
+                    <div class="converter-input">
+                        <div class="upload-zone" id="uploadZone">
+                            <div class="upload-placeholder" id="uploadPlaceholder">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                <h3>Drop an image here</h3>
+                                <p>or click to browse — JPG, PNG, WebP</p>
+                                <span class="upload-hint">Best results with front-facing objects on a plain background</span>
+                            </div>
+                            <div class="upload-preview" id="uploadPreview" style="display:none;">
+                                <img id="previewImage" alt="Uploaded image">
+                                <button class="btn-remove" id="removeImage" aria-label="Remove image">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                </button>
+                            </div>
+                            <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+                        </div>
+
+                        <div class="converter-options" id="advancedOptions" style="display:none;">
+                            <div class="option-group">
+                                <label>Pipeline Mode</label>
+                                <div class="option-toggles">
+                                    <button class="option-btn active" data-value="auto">Auto (Best Quality)</button>
+                                    <button class="option-btn" data-value="sf3d">SF3D (Fastest)</button>
+                                    <button class="option-btn" data-value="unique3d">Unique3D (Detail)</button>
+                                    <button class="option-btn" data-value="lgm">LGM (Gaussian)</button>
+                                </div>
+                            </div>
+                            <div class="option-group">
+                                <label>Output Format</label>
+                                <div class="option-toggles">
+                                    <button class="option-btn active" data-value="glb">GLB</button>
+                                    <button class="option-btn" data-value="obj">OBJ</button>
+                                    <button class="option-btn" data-value="ply">PLY</button>
+                                    <button class="option-btn" data-value="fbx">FBX</button>
+                                </div>
+                            </div>
+                            <div class="option-group">
+                                <label>Texture Resolution</label>
+                                <div class="option-toggles">
+                                    <button class="option-btn" data-value="1024">1K</button>
+                                    <button class="option-btn active" data-value="2048">2K</button>
+                                    <button class="option-btn" data-value="4096">4K</button>
+                                </div>
+                            </div>
+                            <div class="option-row">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    PBR Materials (Metallic + Roughness)
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Normal Maps
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Delight (Remove Shadows)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="converter-output">
+                        <div class="output-header">
+                            <h3>3D Preview</h3>
+                            <div class="output-controls">
+                                <button class="control-btn" id="resetView" title="Reset View" disabled>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 01-9 9 9.75 9.75 0 01-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+                                </button>
+                                <button class="control-btn" id="toggleWireframe" title="Toggle Wireframe" disabled>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                                </button>
+                                <button class="control-btn" id="screenshotBtn" title="Screenshot" disabled>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="output-canvas" id="outputCanvas">
+                            <div class="output-placeholder" id="outputPlaceholder">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#3a3a4a" stroke-width="1">
+                                    <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/>
+                                    <line x1="12" y1="22" x2="12" y2="15.5"/>
+                                    <polyline points="22 8.5 12 15.5 2 8.5"/>
+                                </svg>
+                                <p>Upload an image to preview the 3D model</p>
+                            </div>
+                            <div class="model-viewer" id="modelViewer" style="display:none;"></div>
+                            <div class="conversion-progress" id="conversionProgress" style="display:none;">
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" id="progressBar"></div>
+                                </div>
+                                <div class="progress-status">
+                                    <span id="progressText">Initializing pipeline...</span>
+                                    <span id="progressPercent">0%</span>
+                                </div>
+                                <div class="progress-steps" id="progressSteps">
+                                    <div class="step active" data-step="0">
+                                        <span class="step-dot"></span>
+                                        <span>Uploading</span>
+                                    </div>
+                                    <div class="step" data-step="1">
+                                        <span class="step-dot"></span>
+                                        <span>Multi-View Generation</span>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <span class="step-dot"></span>
+                                        <span>Mesh Reconstruction</span>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <span class="step-dot"></span>
+                                        <span>PBR Texturing</span>
+                                    </div>
+                                    <div class="step" data-step="4">
+                                        <span class="step-dot"></span>
+                                        <span>Finalizing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="output-actions">
+                            <button class="btn btn-primary" id="convertBtn" disabled>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                                Generate 3D Model
+                            </button>
+                            <div class="output-downloads" id="downloadArea" style="display:none;">
+                                <button class="btn btn-outline" id="downloadGLB">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    GLB
+                                </button>
+                                <button class="btn btn-outline" id="downloadOBJ">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    OBJ
+                                </button>
+                                <button class="btn btn-outline" id="downloadFBX">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    FBX
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It <span class="gradient-text">Works</span></h2>
+                <p>The most advanced AI pipeline, from image to production-ready 3D model.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </div>
+                    <h3>Upload Image</h3>
+                    <p>Drag & drop any image of an object, character, or product. PNG, JPG, or WebP supported.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6584" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Multi-View Diffusion</h3>
+                    <p>Our <strong>Unique3D</strong>-style model generates 4 orthographic views with normal maps from your single image.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                    </div>
+                    <h3>ISOMER Mesh Gen</h3>
+                    <p>Our advanced mesh reconstruction algorithm deforms a template mesh to fit the multi-view priors with millions of faces.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    </div>
+                    <h3>PBR Texturing + Export</h3>
+                    <p>UV-unwrapped textures with PBR materials (albedo, roughness, metallic, normal). Export to GLB, OBJ, FBX, or PLY.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section class="models" id="models">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose Your <span class="gradient-text">Pipeline</span></h2>
+                <p>Three state-of-the-art models, each optimized for different priorities.</p>
+            </div>
+            <div class="models-grid">
+                <div class="model-card featured">
+                    <div class="model-badge">RECOMMENDED</div>
+                    <div class="model-icon" style="--model-color: #6C63FF;">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                    </div>
+                    <h3>Auto <span class="model-sub">(Best Quality)</span></h3>
+                    <p class="model-desc">Intelligently selects the best pipeline for your image. Combines all three models.</p>
+                    <ul class="model-features">
+                        <li>Adaptive pipeline selection</li>
+                        <li>Ensemble quality boost</li>
+                        <li>Highest fidelity output</li>
+                    </ul>
+                    <div class="model-stats">
+                        <span class="model-time">~5-30s</span>
+                        <span class="model-label">Generation</span>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon" style="--model-color: #4CAF50;">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>SF3D <span class="model-sub">(Fastest)</span></h3>
+                    <p class="model-desc">0.5-second generation. Best for rapid prototyping and real-time workflows.</p>
+                    <ul class="model-features">
+                        <li>0.5s on H100 GPU</li>
+                        <li>UV unwrapped meshes</li>
+                        <li>Delit PBR textures</li>
+                    </ul>
+                    <div class="model-stats">
+                        <span class="model-time">~0.5s</span>
+                        <span class="model-label">Generation</span>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon" style="--model-color: #FF6584;">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                    </div>
+                    <h3>Unique3D <span class="model-sub">(Detail)</span></h3>
+                    <p class="model-desc">Maximum geometric detail with millions of faces. Best for hero assets.</p>
+                    <ul class="model-features">
+                        <li>Million-face meshes</li>
+                        <li>Multi-level upscaling</li>
+                        <li>ISOMER reconstruction</li>
+                    </ul>
+                    <div class="model-stats">
+                        <span class="model-time">~30s</span>
+                        <span class="model-label">Generation</span>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon" style="--model-color: #FF9800;">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                    </div>
+                    <h3>LGM <span class="model-sub">(Gaussian)</span></h3>
+                    <p class="model-desc">65K+ 3D Gaussians with view-dependent effects. Best visual fidelity.</p>
+                    <ul class="model-features">
+                        <li>65,536 Gaussians</li>
+                        <li>View-dependent SH colors</li>
+                        <li>512px native resolution</li>
+                    </ul>
+                    <div class="model-stats">
+                        <span class="model-time">~5s</span>
+                        <span class="model-label">Generation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section class="examples" id="examples">
+        <div class="container">
+            <div class="section-header">
+                <h2>See It In <span class="gradient-text">Action</span></h2>
+                <p>Real outputs from the Agmay 3D Converter pipeline.</p>
+            </div>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="example-info">
+                        <h4>Art Sculpture</h4>
+                        <p>From photo to high-detail mesh in 12 seconds</p>
+                        <span class="example-tag">Unique3D</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="example-info">
+                        <h4>Product Design</h4>
+                        <p>PBR-ready model with metallic materials</p>
+                        <span class="example-tag">SF3D</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="example-info">
+                        <h4>Character Asset</h4>
+                        <p>65K gaussians with view-dependent effects</p>
+                        <span class="example-tag">LGM</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                    <div class="example-info">
+                        <h4>Architecture</h4>
+                        <p>Full 3D reconstruction from single reference</p>
+                        <span class="example-tag">Auto</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+                        <rect x="2" y="2" width="32" height="32" rx="8" stroke="url(#gradient)" stroke-width="2.5" fill="none"/>
+                        <path d="M18 8L28 14V26L18 32L8 26V14L18 8Z" stroke="url(#gradient)" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+                        <circle cx="18" cy="20" r="4" stroke="url(#gradient)" stroke-width="1.5" fill="none"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="36" y2="36">
+                                <stop stop-color="#6C63FF"/>
+                                <stop offset="1" stop-color="#FF6584"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <h3>Agmay 3D Converter</h3>
+                    <p>Advanced AI-powered image-to-3D model generation using state-of-the-art neural pipelines.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Pipeline</h4>
+                    <a href="#">SF3D</a>
+                    <a href="#">Unique3D</a>
+                    <a href="#">LGM</a>
+                    <a href="#">ISOMER</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Model Zoo</a>
+                    <a href="#">Research Papers</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Agmay 3D Converter. Built with state-of-the-art computer vision research.</p>
+                <p>Powered by PyTorch &bull; Three.js &bull; Python 3.12</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.147.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.147.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
